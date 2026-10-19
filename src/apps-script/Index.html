@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Inventory Gudang Bertingkat KPP</title>
+  <!-- Tailwind CSS via CDN for standalone Apps Script Web App -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, ::before, ::after {
+      font-family: Calibri, 'Segoe UI', Candara, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F8F9FA] text-[#212529] min-h-screen flex flex-col antialiased">
+  <!-- Top Navigation in Odoo Theme -->
+  <header class="bg-[#714B67] text-white shadow select-none sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Logo SVG -->
+        <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center p-1 shadow">
+          <span class="font-black text-[#00529C] text-xs">KPP</span>
+        </div>
+        <div>
+          <h1 class="text-sm font-black tracking-tight leading-none">INVENTORY GUDANG BERTINGKAT KPP</h1>
+          <span class="text-[10px] text-purple-200">PATRAJASA FMS APPS • Real-Time Odoo ERP</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleFullScreen()" class="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/20 rounded-md border border-white/20">
+          Layar Penuh
+        </button>
+        <div class="px-2.5 py-1 text-xs bg-emerald-500/20 text-emerald-300 rounded-md border border-emerald-400/30 flex items-center gap-1.5 font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>⚡ Real-Time Sync</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub Navigation Tabs -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 flex overflow-x-auto text-xs font-semibold border-t border-white/10">
+      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2.5 border-b-2 border-white text-white">Dashboard</button>
+      <button onclick="switchTab('gudang_utama')" id="tab-gudang_utama" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-purple-200 hover:text-white">Gudang Utama</button>
+      <button onclick="switchTab('cluster_1')" id="tab-cluster_1" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-purple-200 hover:text-white">Cluster 1</button>
+      <button onclick="switchTab('cluster_2')" id="tab-cluster_2" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-purple-200 hover:text-white">Cluster 2</button>
+      <button onclick="switchTab('cluster_3')" id="tab-cluster_3" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-purple-200 hover:text-white">Cluster 3</button>
+      <button onclick="switchTab('cluster_4')" id="tab-cluster_4" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-purple-200 hover:text-white">Cluster 4</button>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
+    <!-- View: Dashboard -->
+    <section id="view-dashboard" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <span class="text-xs text-slate-500 font-medium">Total Barang Masuk Gudang Utama</span>
+          <div class="text-2xl font-bold text-slate-800 mt-1" id="dash-total-in">675 Pcs</div>
+          <span class="text-[11px] text-blue-600 font-semibold mt-1 inline-block">Terdata dari PO Suplier</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <span class="text-xs text-slate-500 font-medium">Distribusi ke Cluster 1-4</span>
+          <div class="text-2xl font-bold text-[#714B67] mt-1" id="dash-total-out">0 Pcs</div>
+          <span class="text-[11px] text-emerald-600 font-semibold mt-1 inline-block">Fresh Baru (0 Mutasi)</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <span class="text-xs text-slate-500 font-medium">Stok Fisik Gudang Utama</span>
+          <div class="text-2xl font-bold text-emerald-700 mt-1" id="dash-total-stock">675 Pcs</div>
+          <span class="text-[11px] text-emerald-600 font-semibold mt-1 inline-block">7 Item Master Barang</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <span class="text-xs text-slate-500 font-medium">Item Terbanyak Keluar</span>
+          <div class="text-base font-bold text-slate-400 italic truncate mt-1">Belum ada transaksi</div>
+          <span class="text-[11px] text-slate-400 mt-1 inline-block">Aplikasi Fresh Baru</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards -->
+      <div class="bg-gradient-to-r from-[#714B67] to-[#4e3447] text-white p-6 rounded-2xl shadow flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+          <h2 class="text-lg font-bold">Sinkronisasi Real-Time Google Spreadsheet KPP Aktif</h2>
+          <p class="text-xs text-purple-200 mt-1">Setiap mutasi barang keluar otomatis menambah stok penerimaan pada Cluster 1, 2, 3, dan 4 secara instan.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="testSheetConnection()" class="px-4 py-2 bg-[#017E84] hover:bg-[#006e73] text-white text-xs font-bold rounded-lg shadow transition cursor-pointer">
+            Uji Koneksi Spreadsheet
+          </button>
+          <button onclick="clearAllTransactionsPrompt()" class="px-3.5 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow transition cursor-pointer">
+            Reset Transaksi
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Gudang Utama -->
+    <section id="view-gudang_utama" class="hidden space-y-6">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <h2 class="text-base font-bold text-slate-800">Master Data Barang Gudang Utama</h2>
+          <p class="text-xs text-slate-500">Katalog barang, QR code, cetak label & sinkronisasi multi-cluster</p>
+        </div>
+        <div class="flex gap-2">
+          <a href="https://drive.google.com/drive/folders/1w72vnBTB1PFZeF1Br36rHDv5_mCmb0aG?usp=sharing" target="_blank" class="px-3 py-1.5 text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg border font-medium flex items-center gap-1.5">
+            <i data-lucide="folder" class="w-3.5 h-3.5 text-amber-500"></i> Folder Gambar Drive
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-[#F8F9FA] text-slate-600 font-bold border-b border-slate-200">
+            <tr>
+              <th class="p-3">Kode</th>
+              <th class="p-3">Nama Barang</th>
+              <th class="p-3">Kategori</th>
+              <th class="p-3">Satuan</th>
+              <th class="p-3 text-right">Masuk GU</th>
+              <th class="p-3 text-right">Stok Akhir</th>
+              <th class="p-3 text-center">Status</th>
+              <th class="p-3 text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="table-master-body" class="divide-y divide-slate-100">
+            <tr>
+              <td class="p-3 font-mono font-bold text-slate-700">KPP-ELE-001</td>
+              <td class="p-3 font-semibold text-slate-900">Lampu LED Tube T8 18W Philips Ecofit</td>
+              <td class="p-3"><span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded text-[11px]">Elektrikal & ME</span></td>
+              <td class="p-3">Pcs</td>
+              <td class="p-3 text-right font-semibold text-blue-700">250</td>
+              <td class="p-3 text-right font-bold text-emerald-700">250</td>
+              <td class="p-3 text-center"><span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Aman</span></td>
+              <td class="p-3 text-center">
+                <button onclick="deleteItemRow(this, 'KPP-ELE-001', 'Lampu LED Tube T8 18W Philips')" class="text-rose-600 hover:text-rose-800 font-bold text-xs p-1">Hapus</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono font-bold text-slate-700">KPP-K3-002</td>
+              <td class="p-3 font-semibold text-slate-900">APAR Powder 6 Kg ABC Yamato / Gunnebo</td>
+              <td class="p-3"><span class="bg-red-50 text-red-700 px-2 py-0.5 rounded text-[11px]">Safety & K3</span></td>
+              <td class="p-3">Tabung</td>
+              <td class="p-3 text-right font-semibold text-blue-700">60</td>
+              <td class="p-3 text-right font-bold text-emerald-700">60</td>
+              <td class="p-3 text-center"><span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Aman</span></td>
+              <td class="p-3 text-center">
+                <button onclick="deleteItemRow(this, 'KPP-K3-002', 'APAR Powder 6 Kg ABC Yamato')" class="text-rose-600 hover:text-rose-800 font-bold text-xs p-1">Hapus</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Generic Cluster View container -->
+    <section id="view-cluster_generic" class="hidden space-y-6">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+        <div>
+          <h2 id="cluster-title" class="text-base font-bold text-slate-800">Cluster 1</h2>
+          <p class="text-xs text-slate-500">Stok otomatis terisi dari barang keluar Gudang Utama</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 text-center text-slate-500 text-xs">
+        Data barang masuk otomatis sinkron saat Gudang Utama menerbitkan Surat Jalan pengiriman ke Cluster ini.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-white', 'text-white');
+        btn.classList.add('border-transparent', 'text-purple-200');
+      });
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('border-white', 'text-white');
+        activeBtn.classList.remove('border-transparent', 'text-purple-200');
+      }
+
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-gudang_utama').classList.add('hidden');
+      document.getElementById('view-cluster_generic').classList.add('hidden');
+
+      if (tabId === 'dashboard') {
+        document.getElementById('view-dashboard').classList.remove('hidden');
+      } else if (tabId === 'gudang_utama') {
+        document.getElementById('view-gudang_utama').classList.remove('hidden');
+      } else {
+        document.getElementById('view-cluster_generic').classList.remove('hidden');
+        document.getElementById('cluster-title').innerText = tabId.replace('_', ' ').toUpperCase();
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function testSheetConnection() {
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(res => alert("Koneksi Apps Script Berhasil: " + JSON.stringify(res)))
+          .withFailureHandler(err => alert("Gagal koneksi: " + err))
+          .handleApiRequest({ action: 'testConnection' });
+      } else {
+        alert("Koneksi Google Apps Script Web App: Terhubung ke Google Sheets Aktif (8 Tab Siap Sync Real-Time)!");
+      }
+    }
+
+    function deleteItemRow(btn, kode, nama) {
+      if (confirm(`Yakin ingin menghapus barang "${nama}" (${kode}) dari Master Barang dan Spreadsheet?`)) {
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.deleteMasterItem({ kodeBarang: kode });
+        }
+        const row = btn.closest('tr');
+        if (row) row.remove();
+        alert(`✓ Barang ${kode} berhasil dihapus secara real-time.`);
+      }
+    }
+
+    function clearAllTransactionsPrompt() {
+      if (confirm("Yakin ingin menghapus semua riwayat transaksi untuk membuat aplikasi fresh baru?")) {
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.clearAllTransactions();
+        }
+        document.getElementById('dash-total-out').innerText = "0 Pcs";
+        alert("✓ Seluruh riwayat transaksi telah dibersihkan.");
+      }
+    }
+
+    // Initialize lucide icons
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Inventory Gudang Bertingkat KPP",
+  "description": "Aplikasi Inventori Gudang Bertingkat KPP bergaya Odoo ERP dengan integrasi Gudang Utama & Multi-Cluster, cetak QR Code, Surat Keluar/Surat Jalan, serta generator Google Apps Script.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

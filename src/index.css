@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  *, ::before, ::after {
+    font-family: Calibri, 'Segoe UI', Candara, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #f8f9fa;
+    color: #212529;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Scrollbars in Odoo style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7cbd1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #714b67;
+}
+
+/* Print utilities for official A4 Reports, Surat Jalan, and QR Labels */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide everything by default when printing */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Make only the document container and its children visible */
+  #printable-a4-document,
+  #printable-a4-document *,
+  #printable-label,
+  #printable-label *,
+  #printable-surat-jalan,
+  #printable-surat-jalan * {
+    visibility: visible;
+  }
+
+  /* Position document cleanly to fill the A4 page without clipping */
+  #printable-a4-document,
+  #printable-label,
+  #printable-surat-jalan {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  @page {
+    size: A4 auto;
+    margin: 10mm;
+  }
+}
