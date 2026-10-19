@@ -177,7 +177,7 @@ export default function App() {
       <footer className="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500 no-print">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-1 font-medium">
-            <span className="font-bold text-[#714B67]">Inventory Gudang Bertingkat KPP</span>
+            <span className="font-bold text-[#714B67]">Inventory Gudang KPP</span>
             <span>&bull; Powered by Patrajasa FMS Apps</span>
           </div>
           <div className="text-[11px] text-slate-400">

@@ -357,7 +357,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             )}
           </div>
           <div className="mt-2 text-[11px] text-slate-400">
-            Peringkat Fast-Moving Gudang Bertingkat
+            Peringkat Fast-Moving Gudang KPP
           </div>
         </div>
       </div>

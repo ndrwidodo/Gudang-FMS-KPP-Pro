@@ -571,7 +571,7 @@ export const ReportPdfPreviewModal: React.FC<ReportPdfPreviewModalProps> = ({
                 <div>
                   <div className="font-bold text-slate-700 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Dokumen Sah Sistem Manajemen Inventori Gudang Bertingkat KPP</span>
+                    <span>Dokumen Sah Sistem Manajemen Inventori Gudang KPP</span>
                   </div>
                   <div className="text-[9px]">
                     Generated automatically via FMS Patra Jasa Inventory Core. All rights reserved.

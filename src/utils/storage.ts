@@ -143,14 +143,14 @@ const INITIAL_ITEMS: InventoryItem[] = [
 
 const INITIAL_SPREADSHEET: SpreadsheetConfig = {
   spreadsheetUrl:
-    'https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit',
-  sheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+    'https://docs.google.com/spreadsheets/d/1Yi_J91PxBxrRPfHPdhOPakrwSCvpHtHiXjB2AiG9lh0/edit?gid=1922029956#gid=1922029956',
+  sheetId: '1Yi_J91PxBxrRPfHPdhOPakrwSCvpHtHiXjB2AiG9lh0',
   webAppUrl:
     'https://script.google.com/macros/s/AKfycbz_KPP_Inventory_Apps_Script_Demo/exec',
   autoSync: true,
   status: 'connected',
-  lastTestedAt: '2026-10-18 08:30:00',
-  statusMessage: 'Terhubung ke Google Spreadsheet: Inventori Gudang KPP (4 Tab Sinkron)',
+  lastTestedAt: '2026-10-19 12:00:00',
+  statusMessage: 'Terhubung ke Google Spreadsheet: Inventory Gudang KPP (4 Tab Sinkron)',
 };
 
 // Storage helper functions
@@ -281,7 +281,24 @@ export function getSpreadsheetConfig(): SpreadsheetConfig {
       localStorage.setItem(STORAGE_KEYS.SHEET_CONFIG, JSON.stringify(INITIAL_SPREADSHEET));
       return INITIAL_SPREADSHEET;
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // Auto-migrate if pointing to old default spreadsheet or lacking the new sheet ID
+    if (
+      parsed.sheetId === '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms' ||
+      !parsed.spreadsheetUrl ||
+      parsed.spreadsheetUrl.includes('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')
+    ) {
+      const updated: SpreadsheetConfig = {
+        ...parsed,
+        spreadsheetUrl: INITIAL_SPREADSHEET.spreadsheetUrl,
+        sheetId: INITIAL_SPREADSHEET.sheetId,
+        status: 'connected',
+        statusMessage: INITIAL_SPREADSHEET.statusMessage,
+      };
+      localStorage.setItem(STORAGE_KEYS.SHEET_CONFIG, JSON.stringify(updated));
+      return updated;
+    }
+    return parsed;
   } catch {
     return INITIAL_SPREADSHEET;
   }

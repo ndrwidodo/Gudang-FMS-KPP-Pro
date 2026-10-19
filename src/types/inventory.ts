@@ -1,5 +1,5 @@
 /**
- * Type definitions for Inventory Gudang Bertingkat KPP
+ * Type definitions for Inventory Gudang KPP
  */
 
 export type ClusterId = 'cluster_1' | 'cluster_2' | 'cluster_3' | 'cluster_4';

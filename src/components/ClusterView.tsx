@@ -323,7 +323,7 @@ export const ClusterView: React.FC<ClusterViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Gedung Bertingkat KPP - Penempatan stok transit & pemenuhan area lantai
+              Gudang KPP - Penempatan stok transit & pemenuhan area lantai
             </p>
           </div>
         </div>

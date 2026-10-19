@@ -76,7 +76,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             <PatraJasaLogo size="sm" showSubtitle={false} />
             <div>
               <h3 className="font-bold text-base leading-tight">Autentikasi Pengguna KPP</h3>
-              <p className="text-xs text-purple-200">Inventory Gudang Bertingkat Patrajasa</p>
+              <p className="text-xs text-purple-200">Inventory Gudang KPP Patrajasa</p>
             </div>
           </div>
           <button

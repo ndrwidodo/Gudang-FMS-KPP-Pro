@@ -185,7 +185,7 @@ export const SpreadsheetModal: React.FC<SpreadsheetModalProps> = ({
                   type="text"
                   value={formData.spreadsheetUrl}
                   onChange={(e) => handleSpreadsheetUrlChange(e.target.value)}
-                  placeholder="https://docs.google.com/spreadsheets/d/1BxiMVs.../edit"
+                  placeholder="https://docs.google.com/spreadsheets/d/1Yi_J91PxBxrRPfHPdhOPakrwSCvpHtHiXjB2AiG9lh0/edit"
                   className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#714B67] bg-white font-mono"
                 />
               </div>

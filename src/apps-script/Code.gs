@@ -18,7 +18,7 @@
  *    - Klik 'Terapkan' dan salin URL Aplikasi Web Anda (akhiran /exec) ke menu 'Koneksi Sheet' di aplikasi!
  */
 
-const APP_NAME = "Inventory Gudang Bertingkat KPP";
+const APP_NAME = "Inventory Gudang KPP";
 const DRIVE_FOLDER_ID = "1w72vnBTB1PFZeF1Br36rHDv5_mCmb0aG"; // Folder Google Drive Bukti/Gambar
 
 function doGet(e) {

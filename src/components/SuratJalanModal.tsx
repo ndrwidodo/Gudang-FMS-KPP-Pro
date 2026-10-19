@@ -51,7 +51,7 @@ export const SuratJalanModal: React.FC<SuratJalanModalProps> = ({
             <div>
               <h3 className="font-bold text-base leading-tight">Surat Jalan / Surat Keluar Barang</h3>
               <p className="text-xs text-purple-200">
-                Dokumen Resmi Mutasi & Distribusi Gudang Bertingkat
+                Dokumen Resmi Mutasi & Distribusi Gudang KPP
               </p>
             </div>
           </div>
@@ -204,7 +204,7 @@ export const SuratJalanModal: React.FC<SuratJalanModalProps> = ({
             </div>
 
             <div className="text-[10px] text-slate-400 mt-6 pt-2 border-t border-slate-100 flex justify-between">
-              <span>Dokumen ini dicetak otomatis dari Sistem Inventory Gudang Bertingkat KPP</span>
+              <span>Dokumen ini dicetak otomatis dari Sistem Inventory Gudang KPP</span>
               <span>Halaman 1 dari 1</span>
             </div>
           </div>

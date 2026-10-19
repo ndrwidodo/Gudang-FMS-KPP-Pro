@@ -91,7 +91,7 @@ export const PatraJasaLogo: React.FC<LogoProps> = ({
             </span>
           </div>
           <span className="text-[11px] text-slate-500 font-medium tracking-wide">
-            Inventory Gudang Bertingkat
+            Inventory Gudang KPP
           </span>
         </div>
       )}

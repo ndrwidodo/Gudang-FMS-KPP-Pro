@@ -32,7 +32,7 @@ export const AppsScriptViewerModal: React.FC<AppsScriptViewerModalProps> = ({
  *    - Klik Terapkan dan salin URL Web App Anda ke aplikasi!
  */
 
-const APP_NAME = "Inventory Gudang Bertingkat KPP";
+const APP_NAME = "Inventory Gudang KPP";
 const DRIVE_FOLDER_ID = "1w72vnBTB1PFZeF1Br36rHDv5_mCmb0aG"; // Folder Google Drive Bukti/Gambar
 
 function doGet(e) {
@@ -270,7 +270,7 @@ function getClusterStockData(clusterName) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Inventory Gudang Bertingkat KPP</title>
+  <title>Inventory Gudang KPP</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     * { font-family: Calibri, 'Segoe UI', Candara, Arial, sans-serif; }
@@ -286,7 +286,7 @@ function getClusterStockData(clusterName) {
           <span class="font-black text-[#0A4D94] text-xs">PATRA<span class="text-[#32A028]">JASA</span></span>
         </div>
         <div>
-          <h1 class="text-base font-bold leading-none">Inventory Gudang Bertingkat KPP</h1>
+          <h1 class="text-base font-bold leading-none">Inventory Gudang KPP</h1>
           <span class="text-[11px] text-purple-200">Google Apps Script Web App Edition</span>
         </div>
       </div>
@@ -305,7 +305,7 @@ function getClusterStockData(clusterName) {
   </header>
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-      <h2 class="text-base font-bold text-slate-800">Aplikasi Inventory Gudang Bertingkat Siap Digunakan</h2>
+      <h2 class="text-base font-bold text-slate-800">Aplikasi Inventory Gudang KPP Siap Digunakan</h2>
       <p class="text-xs text-slate-500 mt-1">Data tersinkronisasi otomatis antara Gudang Utama dan Cluster 1, 2, 3, 4 langsung ke Google Sheets Anda.</p>
     </div>
   </main>
@@ -459,7 +459,7 @@ function getClusterStockData(clusterName) {
                   <a href="https://sheets.new" target="_blank" className="text-blue-600 underline">
                     sheets.new
                   </a>{' '}
-                  dan beri judul spreadsheet misalnya <em>"Database Inventory Gudang Bertingkat KPP"</em>.
+                  dan beri judul spreadsheet misalnya <em>"Database Inventory Gudang KPP"</em>.
                 </li>
                 <li className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                   <strong>Buka Apps Script:</strong> Pada menu atas Google Sheets, klik{' '}
